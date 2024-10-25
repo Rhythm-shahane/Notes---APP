@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Note Taking App</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Add Moment.js from CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/min/moment.min.js"></script>
+</head>
+<body class="container">
+    <h1>Note Taking App</h1>
+    
+    <!-- Display current date and time -->
+    <p id="currentDateTime"><strong>Current Date and Time (ISO 8601):</strong></p>
+
+    <form action="/notes" method="post" id="noteForm">
+        <div class="form-group">
+            <label for="title">Title</label>
+            <input type="text" name="title" id="title" class="form-control" placeholder="Title" required>
+        </div>
+
+        <div class="form-group">
+            <label for="content">Content</label>
+            <textarea name="content" id="content" class="form-control" placeholder="Content" required></textarea>
+        </div>
+
+        <input type="hidden" name="createdAt" id="createdAt">
+
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Save Note</button>
+        </div>
+    </form>
+
+    <hr>
+
+    <% if (notes.length > 0) { %>
+        <% notes.forEach(note => { %>
+            <div class="note">
+                <h2><%= note.title %></h2>
+                <p><%= note.content %></p>
+                <p><strong>Created on:</strong> <%= note.createdAt %></p>
+                <!-- Edit and Delete buttons -->
+                <a href="/notes/edit/<%= note._id %>" class="btn btn-warning">Edit</a>
+                <form action="/notes/delete/<%= note._id %>" method="post" style="display: inline;">
+                    <button type="submit" class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+        <% }) %>
+    <% } else { %>
+        <p>No notes found.</p>
+    <% } %>
+
+    <script>
+        // Display the current date and time in ISO 8601 format on page load
+        const now = moment();
+        document.getElementById('currentDateTime').textContent += " " + now.format();
+
+        // Event listener for form submission
+        document.getElementById('noteForm').addEventListener('submit', function() {
+            // Use Moment.js to get the current date and time for the note
+            const currentDateTime = moment().format('YYYY-MM-DD HH:mm:ss'); // Customize format as needed
+            document.getElementById('createdAt').value = currentDateTime; // Set it as the value of the hidden input
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
