@@ -1,0 +1,23 @@
+{
+  "name": "note-taking-app",
+  "version": "1.0.0",
+  "description": "In today's digital age, note-taking has become an essential part of our daily routine. \r From jotting down quick reminders to organizing important ideas and thoughts, \r note-taking has proven to be an effective way of enhancing productivity and keeping track of our goals. \r In this tutorial, we'll guide you through the process of building a basic note-taking app using MongoDB, Node.js, Express, and Bootstrap. \r With our step-by-step approach, even beginners can follow along and create a fully functional note-taking app that's both user-friendly and visually appealing. \r Whether you're a student looking to organize your studies or a professional seeking to streamline your work processes, this tutorial is for you. \r Let's get started!",
+  "main": "app.js",
+  "scripts": {
+    "start": "NODE_ENV=production node app.js",
+    "dev": "nodemon app.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.3",
+    "ejs": "^3.1.10",
+    "express": "^4.21.1",
+    "moment": "^2.30.1",
+    "mongoose": "^7.8.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.22"
+  }
+}
